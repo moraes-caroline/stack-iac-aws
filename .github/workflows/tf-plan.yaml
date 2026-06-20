@@ -39,8 +39,8 @@ jobs:
   call-reusable-workflow:
     if: ${{ github.ref == 'refs/heads/main' }}
     name: 'IaC'
-    needs: [set-role, security-scan]
-    uses: @main
+    needs: [set-role]
+    uses: moraes-caroline/iac-reusable-aws/.github/workflows/reusable-plan.yml@main
     with:
       environment: '${{ github.event.inputs.environment }}'
       terraform_directory: '.'
