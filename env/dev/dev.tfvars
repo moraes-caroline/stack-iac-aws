@@ -109,9 +109,9 @@ secrets_manager = {
  
 #----------------------- IAM Roles -----------------------#
 iam_roles = {
-  "haf-dev-assinaturahsm" = {
-    name                         = "iam-haf-assinaturahsm-api-dev-br-001"#
-    description                  = "IAM Role for HAF DEV"
+  "app1" = {
+    name                         = "iam-app1-assinaturahsm-api-dev-br-001"#
+    description                  = "IAM Role for appq"
     enable_appconfig_policy      = true
     enable_secretsmanager_policy = true
     enable_kms_policy            = false
@@ -123,7 +123,7 @@ iam_roles = {
     s3_resource_arns             = ["*"]
     rdspostgresql_resource_arns  = ["arn:aws:rds-db:sa-east-1:887194768853:dbuser:db-RMMZXNO4POHCK4LHXN4PUXE2F4/app_assinaturahsm"]
     iam_managed_policy_arns      = []
-    openshift_namespace          = "haf-ns1-d"
+    openshift_namespace          = "app1-ns1-d"
     openshift_service_account    = "aws-appconfig-sa"
   }
 }
