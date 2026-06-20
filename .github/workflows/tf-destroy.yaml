@@ -1,0 +1,46 @@
+name: 'IaC AWS ➜ Destroy'
+ 
+run-name: IaC AWS ➜ Destroy | ${{ github.event.inputs.environment }}
+ 
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment to DEPLOY'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - hmg
+          - prd     
+jobs:
+  set-role:
+    runs-on:
+      group: AWS
+      labels: [self-hosted, Linux, X64, aws]
+    outputs:
+      role: ${{ steps.map.outputs.role }}
+    steps:
+      - id: map
+        run: |
+          if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
+            echo "role=" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.inputs.environment }}" = "hmg" ]; then
+            echo "role=" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.inputs.environment }}" = "prd" ]; then
+            echo "role=" >> $GITHUB_OUTPUT
+          else
+            echo "Ambiente inválido"; exit 1
+          fi
+  call-destroy:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    name: 'IaC'
+    needs: [set-role]
+    uses: @main
+    with:
+      environment: ${{ inputs.environment }}
+      terraform_directory: .
+      role-to-assume: '${{ needs.set-role.outputs.role }}'
+      module: ${{ inputs.module }}
+    secrets: inherit
