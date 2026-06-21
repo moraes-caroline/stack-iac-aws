@@ -38,7 +38,7 @@ locals {
 }
  
 module "aws_s3_bucket" {
-  source = "git::https://github.com/moraes-caroline/iac-modules/tree/main/aws/aws-s3bucket?ref=main"
+  source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-s3bucket?ref=main"
  
   for_each                         = local.expanded
   bucket_name                      = each.value.bucket_name
@@ -71,7 +71,7 @@ module "aws_s3_bucket" {
  
 #------------------------ AppConfig -----------------------#
 module "aws_appconfig" {
-  source = "git::https://github.com/moraes-caroline/iac-modules/tree/main/aws/aws-appconfig?ref=main"
+  source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-appconfig?ref=main
  
   enable_github_variables = var.enable_github_variables
   github_token            = var.github_token
@@ -81,7 +81,7 @@ module "aws_appconfig" {
 
 #---------------------- IAM Roles (Multiple per Application) -----------------------#
 module "iam_roles" {
-  source   = "git::https://github.com/moraes-caroline/iac-modules/tree/main/aws/aws-iamrole?ref=main"
+  source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-iamroles?ref=main
   for_each = var.iam_roles
  
   environment = var.environment
