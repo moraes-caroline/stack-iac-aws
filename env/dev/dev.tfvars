@@ -109,7 +109,7 @@ secrets_manager = {
 #----------------------- IAM Roles -----------------------#
 iam_roles = {
   "app1" = {
-    name                         = "iam-app1-assinaturahsm-api-dev-br-001"#
+    name                         = "iam-app1-api-dev-br-001"#
     description                  = "IAM Role for app1"
     enable_appconfig_policy      = true
     enable_secretsmanager_policy = true
