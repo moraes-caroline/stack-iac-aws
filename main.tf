@@ -88,6 +88,11 @@ module "iam_roles" {
  
   iam_role_name        = each.value.name
   iam_role_description = each.value.description
+  
+  github_token            = var.github_token
+  appconfig_applications  = var.appconfig_applications
+  enable_github_variables = var.enable_github_variables
+
  
   # Gerar assume role policy dinamicamente
   iam_role_assume_role_policy = jsonencode({
