@@ -6,7 +6,7 @@ oidc_provider_identifier = "token.actions.githubusercontent.com"
  
 #----------------------- S3 Bucket ----------------------#
 bucket = {
-  bucket_name                      = "s3-aws-plataform-terraform-dev"
+  bucket_name                      = "s3-app1-524558748007-dev"
   environment                      = "dev"
   versioning_enabled               = false
   mfa_delete_enabled               = false
