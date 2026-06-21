@@ -1,7 +1,7 @@
 #----------------------- General -----------------------#
 environment              = "dev"
 region                   = "sa-east-1"
-aws_account_id           = ""
+aws_account_id           = "524558748007"
  
 #----------------------- S3 Bucket ----------------------#
 buckets = {
