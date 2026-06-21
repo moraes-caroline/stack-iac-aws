@@ -1,9 +1,6 @@
 terraform {
  
   backend "s3" {
-    bucket = "bucket-aws"
-    key    = "terraform/state/infra.tfstate"
-    region = "sa-east-1"
   }
  
   required_providers {
