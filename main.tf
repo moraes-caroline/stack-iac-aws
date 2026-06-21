@@ -25,35 +25,33 @@ data "aws_iam_policy_document" "lambda_policy" {
     ]
   }
 }
-
-#----------------------- S3 Bucket ----------------------#
- module "aws_s3_bucket" {
+module "aws_s3_bucket" {
   source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-s3bucket?ref=main"
 
-  bucket_name                      = var.buckets.privado.bucket_name
-  environment                      = var.buckets.privado.environment
-  versioning_enabled               = var.buckets.privado.versioning_enabled
-  mfa_delete_enabled               = var.buckets.privado.mfa_delete_enabled
-  encryption_type                  = var.buckets.privado.encryption_type
-  kms_key_id                       = var.buckets.privado.kms_key_id
-  block_public_acls                = var.buckets.privado.block_public_acls
-  block_public_policy              = var.buckets.privado.block_public_policy
-  ignore_public_acls               = var.buckets.privado.ignore_public_acls
-  restrict_public_buckets          = var.buckets.privado.restrict_public_buckets
-  lifecycle_enabled                = var.buckets.privado.lifecycle_enabled
-  transition_to_ia_days            = var.buckets.privado.transition_to_ia_days
-  transition_to_glacier_days       = var.buckets.privado.transition_to_glacier_days
-  expiration_days                  = var.buckets.privado.expiration_days
-  logging_enabled                  = var.buckets.privado.logging_enabled
-  log_bucket                       = var.buckets.privado.log_bucket
-  log_prefix                       = var.buckets.privado.log_prefix
-  s3_bucket_website_index_document = var.buckets.privado.s3_bucket_website_index_document
-  s3_bucket_website_error_document = var.buckets.privado.s3_bucket_website_error_document
-  s3_bucket_website_enabled        = var.buckets.privado.s3_bucket_website_enabled
-  enable_vpc_endpoint              = var.buckets.privado.enable_vpc_endpoint
-  vpc_endpoint_vpc_id              = var.buckets.privado.vpc_endpoint_vpc_id
-  vpc_endpoint_type                = var.buckets.privado.vpc_endpoint_type
-  vpc_endpoint_route_table_ids     = var.buckets.privado.vpc_endpoint_route_table_ids
+  bucket_name                      = var.bucket.bucket_name
+  environment                      = var.bucket.environment
+  versioning_enabled               = var.bucket.versioning_enabled
+  mfa_delete_enabled               = var.bucket.mfa_delete_enabled
+  encryption_type                  = var.bucket.encryption_type
+  kms_key_id                       = var.bucket.kms_key_id
+  block_public_acls                = var.bucket.block_public_acls
+  block_public_policy              = var.bucket.block_public_policy
+  ignore_public_acls               = var.bucket.ignore_public_acls
+  restrict_public_buckets          = var.bucket.restrict_public_buckets
+  lifecycle_enabled                = var.bucket.lifecycle_enabled
+  transition_to_ia_days            = var.bucket.transition_to_ia_days
+  transition_to_glacier_days       = var.bucket.transition_to_glacier_days
+  expiration_days                  = var.bucket.expiration_days
+  logging_enabled                  = var.bucket.logging_enabled
+  log_bucket                       = var.bucket.log_bucket
+  log_prefix                       = var.bucket.log_prefix
+  s3_bucket_website_index_document = var.bucket.s3_bucket_website_index_document
+  s3_bucket_website_error_document = var.bucket.s3_bucket_website_error_document
+  s3_bucket_website_enabled        = var.bucket.s3_bucket_website_enabled
+  enable_vpc_endpoint              = var.bucket.enable_vpc_endpoint
+  vpc_endpoint_vpc_id              = var.bucket.vpc_endpoint_vpc_id
+  vpc_endpoint_type                = var.bucket.vpc_endpoint_type
+  vpc_endpoint_route_table_ids     = var.bucket.vpc_endpoint_route_table_ids
   region                           = var.region
   tags                             = var.tags
 }
