@@ -83,24 +83,26 @@ module "iam_roles" {
  
   # Gerar assume role policy dinamicamente
   iam_role_assume_role_policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Sid" : "AllowAssumeRoleWithRosa",
-        "Effect" : "Allow",
-        "Principal" : {
-          "Federated" : "arn:aws:iam::${var.aws_account_id}:oidc-provider/${var.oidc_provider_identifier}"
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAssumeRoleWithGitHub",
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::${var.aws_account_id}:oidc-provider/${var.oidc_provider_identifier}"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "${var.oidc_provider_identifier}:aud": "sts.amazonaws.com"
         },
-        "Action" : "sts:AssumeRoleWithWebIdentity",
-        "Condition" : {
-          "StringEquals" : {
-            "${var.oidc_provider_identifier}:aud" : "sts.amazonaws.com",
-            "${var.oidc_provider_identifier}:sub" : "system:serviceaccount:${each.value.openshift_namespace}:${each.value.openshift_service_account}"
-          }
+        "StringLike": {
+          "${var.oidc_provider_identifier}:sub": "repo:moraes-caroline/stack-iac-aws:*"
         }
       }
-    ]
-  })
+    }
+  ]
+})
  
   # Políticas pré-definidas
   enable_appconfig_policy      = each.value.enable_appconfig_policy
