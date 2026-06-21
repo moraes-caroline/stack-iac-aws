@@ -59,7 +59,7 @@ module "aws_s3_bucket" {
 #------------------------ ECR -----------------------#
  
  module "ecr" {
-  source = "./aws/aws-ecr"
+  source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-ecr?ref=main"
 
   repository_name = "flask-app"
 
