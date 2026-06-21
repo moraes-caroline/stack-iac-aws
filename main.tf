@@ -81,7 +81,7 @@ module "aws_appconfig" {
 
 #---------------------- IAM Roles (Multiple per Application) -----------------------#
 module "iam_roles" {
-  source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-iamroles?ref=main"
+  source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-iamrole?ref=main"
   for_each = var.iam_roles
  
   environment = var.environment
