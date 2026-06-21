@@ -12,13 +12,15 @@ on:
         type: choice
         options:
           - dev
-          - hmg
-          - prd
+
+permissions:
+ id-token: write
+ contents: read
+ 
 jobs:
   set-role:
     runs-on:
-      group: AWS
-      labels: [self-hosted, Linux, X64, aws]
+      labels: ubuntu-latest
     outputs:
       role: ${{ steps.map.outputs.role }}
     steps:
@@ -37,7 +39,7 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     name: 'IaC'
     needs: [set-role]
-    uses: @main
+    uses: moraes-caroline/iac-reusable-aws/.github/workflows/reusable-apply.yaml@main
     with:
       environment: '${{ github.event.inputs.environment }}'
       terraform_directory: '.'
