@@ -2,6 +2,7 @@
 environment              = "dev"
 region                   = "sa-east-1"
 aws_account_id           = "524558748007"
+oidc_provider_identifier = "token.actions.githubusercontent.com"
  
 #----------------------- S3 Bucket ----------------------#
 buckets = {

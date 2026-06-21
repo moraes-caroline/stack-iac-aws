@@ -139,3 +139,7 @@ variable "enable_github_variables" {
   default     = false
 }
  
+ variable "oidc_provider_identifier" {
+  description = "OIDC provider identifier (ex: token.actions.githubusercontent.com)"
+  type        = string
+}
