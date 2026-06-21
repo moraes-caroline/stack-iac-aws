@@ -21,7 +21,7 @@ jobs:
   set-role:
     runs-on:
       group: AWS
-      labels: [self-hosted, Linux, X64, aws]
+      labels: ubuntu-latest
     outputs:
       role: ${{ steps.map.outputs.role }}
     steps:
