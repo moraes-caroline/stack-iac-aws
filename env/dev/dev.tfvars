@@ -5,34 +5,32 @@ aws_account_id           = "524558748007"
 oidc_provider_identifier = "token.actions.githubusercontent.com"
  
 #----------------------- S3 Bucket ----------------------#
-buckets = {
-  privado = {
-    bucket_name                      = "s3-aws-plataform-terraform-dev"
-    environment                      = "dev"
-    versioning_enabled               = false
-    mfa_delete_enabled               = false
-    encryption_type                  = null
-    kms_key_id                       = null
-    block_public_acls                = true
-    block_public_policy              = true
-    ignore_public_acls               = true
-    restrict_public_buckets          = true
-    s3_bucket_website_enabled        = false
-    s3_bucket_website_index_document = ""
-    s3_bucket_website_error_document = ""
-    lifecycle_enabled                = false
-    transition_to_ia_days            = 30
-    transition_to_glacier_days       = 90
-    expiration_days                  = 365
-    logging_enabled                  = false
-    log_bucket                       = ""
-    log_prefix                       = ""
-    aws_region                       = "sa-east-1"
-    enable_vpc_endpoint              = false
-    vpc_endpoint_vpc_id              = "vpc-02393fda03cd3db38"#
-    vpc_endpoint_type                = "Gateway"
-    vpc_endpoint_route_table_ids     = ["rtb-06ad808bcc2321e60"]#
-  }
+bucket = {
+  bucket_name                      = "s3-aws-plataform-terraform-dev"
+  environment                      = "dev"
+  versioning_enabled               = false
+  mfa_delete_enabled               = false
+  encryption_type                  = null
+  kms_key_id                       = null
+  block_public_acls                = true
+  block_public_policy              = true
+  ignore_public_acls               = true
+  restrict_public_buckets          = true
+  s3_bucket_website_enabled        = false
+  s3_bucket_website_index_document = ""
+  s3_bucket_website_error_document = ""
+  lifecycle_enabled                = false
+  transition_to_ia_days            = 30
+  transition_to_glacier_days       = 90
+  expiration_days                  = 365
+  logging_enabled                  = false
+  log_bucket                       = ""
+  log_prefix                       = ""
+  aws_region                       = "sa-east-1"
+  enable_vpc_endpoint              = false
+  vpc_endpoint_vpc_id              = "vpc-02393fda03cd3db38"
+  vpc_endpoint_type                = "Gateway"
+  vpc_endpoint_route_table_ids     = ["rtb-06ad808bcc2321e60"]
 }
  
 #------------------------- KMS Key ----------------------#
