@@ -12,8 +12,11 @@ on:
         type: choice
         options:
           - dev
-          - hmg
-          - prd
+
+permissions:
+ id-token: write
+ contents: read
+ 
 jobs:
   set-role:
     runs-on:
