@@ -143,3 +143,15 @@ variable "enable_github_variables" {
   description = "OIDC provider identifier (ex: token.actions.githubusercontent.com)"
   type        = string
 }
+
+variable "kms_key_key_usage" {
+  type        = string
+  description = "KMS key usage"
+  default     = null
+}
+
+variable "kms_key_alias_name" {
+  type        = string
+  description = "KMS alias"
+  default     = null
+}

@@ -109,7 +109,7 @@ module "iam_roles" {
           "${var.oidc_provider_identifier}:aud": "sts.amazonaws.com"
         },
         "StringLike": {
-          "${var.oidc_provider_identifier}:sub": "repo:moraes-caroline/stack-iac-aws:*"
+          "${var.oidc_provider_identifier}:sub": "repo:moraes-caroline/application1"
         }
       }
     }
