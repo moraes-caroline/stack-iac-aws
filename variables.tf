@@ -18,17 +18,20 @@ variable "environment" {
   description = "Environment (e.g., dev, hmg, prod)"
   type        = string
 }
+
+variable "aws_account_id" {
+  type = string
+}
  
 variable "region" {
   type        = string
   description = "AWS region"
 }
- 
-#---------------------- S3 Buckets -----------------------#
-variable "buckets" {
-  description = "Mapa de buckets com configurações por ambiente"
-  type = map(object({
-    bucket_name                      = list(string)
+
+ variable "bucket" {
+  description = "Configuração de um bucket S3"
+  type = object({
+    bucket_name                      = string
     environment                      = string
     versioning_enabled               = bool
     mfa_delete_enabled               = bool
@@ -49,13 +52,12 @@ variable "buckets" {
     s3_bucket_website_enabled        = bool
     s3_bucket_website_index_document = string
     s3_bucket_website_error_document = string
- 
+
     enable_vpc_endpoint          = optional(bool, false)
     vpc_endpoint_vpc_id          = optional(string)
     vpc_endpoint_type            = optional(string)
     vpc_endpoint_route_table_ids = optional(list(string), [])
- 
-  }))
+  })
 }
 
 #------------------------ IAM Roles ----------------------#

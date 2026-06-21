@@ -27,46 +27,35 @@ data "aws_iam_policy_document" "lambda_policy" {
 }
 
 #----------------------- S3 Bucket ----------------------#
- 
-locals {
-  expanded = merge([
-    for key, bucket in var.buckets : {
-      for b in bucket.bucket_name :
-      "${key}-${b}" => merge(bucket, { bucket_name = b })
-    }
-  ]...)
-}
- 
-module "aws_s3_bucket" {
+ module "aws_s3_bucket" {
   source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-s3bucket?ref=main"
- 
-  for_each                         = local.expanded
-  bucket_name                      = each.value.bucket_name
-  environment                      = each.value.environment
-  versioning_enabled               = contains(local.buckets_with_object_lock, each.value.bucket_name) ? true : each.value.versioning_enabled
-  mfa_delete_enabled               = each.value.mfa_delete_enabled
-  encryption_type                  = each.value.encryption_type
-  kms_key_id                       = each.value.kms_key_id
-  block_public_acls                = each.value.block_public_acls
-  block_public_policy              = each.value.block_public_policy
-  ignore_public_acls               = each.value.ignore_public_acls
-  restrict_public_buckets          = each.value.restrict_public_buckets
-  lifecycle_enabled                = each.value.lifecycle_enabled
-  transition_to_ia_days            = each.value.transition_to_ia_days
-  transition_to_glacier_days       = each.value.transition_to_glacier_days
-  expiration_days                  = each.value.expiration_days
-  logging_enabled                  = each.value.logging_enabled
-  log_bucket                       = each.value.log_bucket
-  log_prefix                       = each.value.log_prefix
-  s3_bucket_website_index_document = each.value.s3_bucket_website_index_document
-  s3_bucket_website_error_document = each.value.s3_bucket_website_error_document
-  s3_bucket_website_enabled        = each.value.s3_bucket_website_enabled
-  enable_vpc_endpoint              = each.value.enable_vpc_endpoint
-  vpc_endpoint_vpc_id              = each.value.vpc_endpoint_vpc_id
-  vpc_endpoint_type                = each.value.vpc_endpoint_type
-  vpc_endpoint_route_table_ids     = each.value.vpc_endpoint_route_table_ids
+
+  bucket_name                      = var.buckets.privado.bucket_name
+  environment                      = var.buckets.privado.environment
+  versioning_enabled               = var.buckets.privado.versioning_enabled
+  mfa_delete_enabled               = var.buckets.privado.mfa_delete_enabled
+  encryption_type                  = var.buckets.privado.encryption_type
+  kms_key_id                       = var.buckets.privado.kms_key_id
+  block_public_acls                = var.buckets.privado.block_public_acls
+  block_public_policy              = var.buckets.privado.block_public_policy
+  ignore_public_acls               = var.buckets.privado.ignore_public_acls
+  restrict_public_buckets          = var.buckets.privado.restrict_public_buckets
+  lifecycle_enabled                = var.buckets.privado.lifecycle_enabled
+  transition_to_ia_days            = var.buckets.privado.transition_to_ia_days
+  transition_to_glacier_days       = var.buckets.privado.transition_to_glacier_days
+  expiration_days                  = var.buckets.privado.expiration_days
+  logging_enabled                  = var.buckets.privado.logging_enabled
+  log_bucket                       = var.buckets.privado.log_bucket
+  log_prefix                       = var.buckets.privado.log_prefix
+  s3_bucket_website_index_document = var.buckets.privado.s3_bucket_website_index_document
+  s3_bucket_website_error_document = var.buckets.privado.s3_bucket_website_error_document
+  s3_bucket_website_enabled        = var.buckets.privado.s3_bucket_website_enabled
+  enable_vpc_endpoint              = var.buckets.privado.enable_vpc_endpoint
+  vpc_endpoint_vpc_id              = var.buckets.privado.vpc_endpoint_vpc_id
+  vpc_endpoint_type                = var.buckets.privado.vpc_endpoint_type
+  vpc_endpoint_route_table_ids     = var.buckets.privado.vpc_endpoint_route_table_ids
   region                           = var.region
-  tags                             = each.value.tags
+  tags                             = var.tags
 }
  
 #------------------------ AppConfig -----------------------#
