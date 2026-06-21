@@ -67,7 +67,19 @@ module "aws_s3_bucket" {
     Environment = "dev"
   }
 }
+#------------------------ ECS -----------------------#
+module "ecs" {
+    source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-ecs?ref=main"
 
+
+  cluster_name    = "flask-cluster"
+  service_name    = "flask-app"
+  container_image = "524558748007.dkr.ecr.sa-east-1.amazonaws.com/flask-app:latest"
+
+  tags = {
+    Environment = "dev"
+  }
+}
 #------------------------ AppConfig -----------------------#
 module "aws_appconfig" {
   source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-appconfig?ref=main"
