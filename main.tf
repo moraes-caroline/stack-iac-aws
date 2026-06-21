@@ -55,7 +55,19 @@ module "aws_s3_bucket" {
   region                           = var.region
   tags                             = var.tags
 }
+
+#------------------------ ECR -----------------------#
  
+ module "ecr" {
+  source = "./aws/aws-ecr"
+
+  repository_name = "flask-app"
+
+  tags = {
+    Environment = "dev"
+  }
+}
+
 #------------------------ AppConfig -----------------------#
 module "aws_appconfig" {
   source = "git::https://github.com/moraes-caroline/iac-modules.git//aws/aws-appconfig?ref=main"
