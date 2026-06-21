@@ -6,7 +6,7 @@ aws_account_id           = ""
 #----------------------- S3 Bucket ----------------------#
 buckets = {
   privado = {
-    bucket_name                      = "bucket-aws"
+    bucket_name                      = "s3-aws-plataform-terraform-dev"
     environment                      = "dev"
     versioning_enabled               = false
     mfa_delete_enabled               = false
