@@ -27,14 +27,11 @@ jobs:
       - id: map
         run: |
           if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
-            echo "role=" >> $GITHUB_OUTPUT
-          elif [ "${{ github.event.inputs.environment }}" = "hmg" ]; then
-            echo "role=" >> $GITHUB_OUTPUT
-          elif [ "${{ github.event.inputs.environment }}" = "prd" ]; then
-            echo "role=" >> $GITHUB_OUTPUT
+            echo "role=arn:aws:iam::524558748007:role/role-terraform-aws" >> $GITHUB_OUTPUT
           else
             echo "Ambiente inválido"; exit 1
           fi
+ 
   call-reusable-workflow:
     if: ${{ github.ref == 'refs/heads/main' }}
     name: 'IaC'
