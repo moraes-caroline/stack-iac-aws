@@ -20,7 +20,6 @@ permissions:
 jobs:
   set-role:
     runs-on:
-      group: AWS
       labels: ubuntu-latest
     outputs:
       role: ${{ steps.map.outputs.role }}
